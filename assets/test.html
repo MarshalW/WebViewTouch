@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <title>Test</title>
+    <script src="jquery-1.9.1.min.js"></script>
+    <style>
+        span {
+            background-color: #ffd7b6;
+        }
+    </style>
+</head>
+<body>
+<p id='content'>月球，俗称月亮，古称太阴，是环绕地球运行的一颗卫星。它是地球唯一的一颗天然卫星....</p>
+<button id="testButton">测试</button>
+<script>
+    $(document).ready(function () {
+        var originHtml= '月球，俗称月亮，古称太阴，是环绕地球运行的一颗卫星。它是地球唯一的一颗天然卫星....';
+        $('#testButton').on('click', function () {
+            for (var i = 0; i < 20+7; i++) {
+                (function (index) {
+                    setTimeout(function () {
+                        var content=$('#content')[0];
+                        content.innerHTML=originHtml;
+                        var text=content.firstChild;
+
+                        var range = document.createRange();
+                        range.setStart(text,0);
+                        range.setEnd(text,index);
+
+                        var node = document.createElement('span');
+                        range.surroundContents(node);
+
+                        console.log('index:'+index);
+
+                    }, index * 0);
+                })(i);
+            }
+        });
+    });
+</script>
+</body>
+</html>
